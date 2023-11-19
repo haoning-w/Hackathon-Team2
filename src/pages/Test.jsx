@@ -1,3 +1,4 @@
+import DonationForm from "../features/test-donations/DonationForm";
 import TestDashboard from "../features/test-donations/TestDashboard";
 import CartOverview from "../features/test-feature/CartOverview";
 
@@ -7,6 +8,7 @@ function Test() {
       <p className="text-emerald-500 text-[48px] text-center">
         Test all kinds of stuff
       </p>
+      <DonationForm />
       <CartOverview />
       <TestDashboard />
     </div>

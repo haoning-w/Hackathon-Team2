@@ -1,4 +1,4 @@
-import { useQuery } from "react-query";
+import { useQuery } from "@tanstack/react-query";
 import { getTestData } from "../../services/getTestData";
 import toast from "react-hot-toast";
 

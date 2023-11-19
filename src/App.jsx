@@ -4,7 +4,8 @@ import AppLayout from "./ui/AppLayout";
 
 import { Provider } from "react-redux";
 import store from "./store";
-import { QueryClient, QueryClientProvider } from "react-query";
+import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
+import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
 import Toast from "./ui/Toast";
 
 const queryClient = new QueryClient();
@@ -12,6 +13,7 @@ const queryClient = new QueryClient();
 function App() {
   return (
     <QueryClientProvider client={queryClient}>
+      <ReactQueryDevtools />
       <Provider store={store}>
         <BrowserRouter>
           <Routes>
