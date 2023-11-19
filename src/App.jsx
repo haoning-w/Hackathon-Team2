@@ -17,9 +17,10 @@ function App() {
       <Provider store={store}>
         <BrowserRouter>
           <Routes>
-            <Route element={<AppLayout />} />
-            <Route index replace element={<Navigate to="test" />} />
-            <Route path="/test" element={<Test />} />
+            <Route element={<AppLayout />}>
+              <Route index replace element={<Navigate to="test" />} />
+              <Route path="/test" element={<Test />} />
+            </Route>
           </Routes>
         </BrowserRouter>
         <Toast />
