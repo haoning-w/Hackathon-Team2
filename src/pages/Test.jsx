@@ -21,7 +21,7 @@ function Test() {
       <DonationForm />
       <CartOverview />
       <TestDashboard />
-      <div className="h-[800px]">
+      <div className="h-[600px]">
         <TestMap />
       </div>
     </div>
