@@ -1,5 +1,11 @@
+import AppMap from "../features/map/AppMap";
+
 function Main() {
-  return <div></div>;
+  return (
+    <div>
+      <AppMap />
+    </div>
+  );
 }
 
 export default Main;

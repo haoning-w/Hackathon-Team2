@@ -8,6 +8,7 @@ import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
 import Toast from "./ui/Toast";
 import Home from "./pages/Home";
+import Main from "./pages/Main";
 
 const queryClient = new QueryClient();
 
@@ -21,6 +22,7 @@ function App() {
             <Route element={<AppLayout />}>
               <Route index replace element={<Navigate to="home" />} />
               <Route path="/home" element={<Home />} />
+              <Route path="/main" element={<Main />} />
               <Route path="/test" element={<Test />} />
             </Route>
           </Routes>
