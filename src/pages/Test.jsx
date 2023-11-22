@@ -3,6 +3,7 @@ import DonationForm from "../features/test-donations/DonationForm";
 import TestDashboard from "../features/test-donations/TestDashboard";
 import CartOverview from "../features/test-feature/CartOverview";
 import toast from "react-hot-toast";
+import TestMap from "../features/test-feature/TestMap";
 
 function Test() {
   return (
@@ -20,6 +21,9 @@ function Test() {
       <DonationForm />
       <CartOverview />
       <TestDashboard />
+      <div className="h-[800px]">
+        <TestMap />
+      </div>
     </div>
   );
 }
