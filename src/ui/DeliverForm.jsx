@@ -1,4 +1,14 @@
+import { useForm } from "react-hook-form";
+import { useNavigate } from "react-router-dom";
+
 function DeliverForm({ products }) {
+  const navigate = useNavigate();
+  const { register, handleSubmit, watch } = useForm();
+  const values = watch();
+  const totalAmount = Object.values(values).reduce((acc, currentValue) => {
+    const quantity = Number(currentValue) || 0;
+    return acc + quantity;
+  }, 0);
   return (
     <form className="">
       {products.map((item, ind) => (
@@ -8,14 +18,26 @@ function DeliverForm({ products }) {
         >
           <label className="h-[100%] my-auto text-center">{item.name}</label>
           <input
+            {...register(`product_${ind}`)}
             className="text-[var(--color-dark--1)] w-32 h-[32px]"
             type="number"
           />
         </div>
       ))}
-      <button className="border px-8 py-3 rounded-xl text-[16px] mt-4 bg-[var(--color-brand--2)] text-[var(--color-dark--1)]">
-        Confirm
-      </button>
+      <div className="w-[100%] flex justify-end">
+        <label className="block mt-4">Total Amount: {totalAmount}</label>
+      </div>
+      <div className="flex justify-between">
+        <button
+          className="border px-8 py-3 rounded-xl text-[16px] mt-4 block"
+          onClick={() => navigate(-1)}
+        >
+          &larr; Back
+        </button>
+        <button className="border px-8 py-3 rounded-xl text-[16px] mt-4 bg-[var(--color-brand--2)] text-[var(--color-dark--1)]">
+          Confirm
+        </button>
+      </div>
     </form>
   );
 }

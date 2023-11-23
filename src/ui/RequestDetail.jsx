@@ -2,7 +2,6 @@ import { useNavigate } from "react-router-dom";
 import DeliverForm from "./DeliverForm";
 
 function RequestDetail() {
-  const navigate = useNavigate();
   const request = {
     id: "123455",
     name: "Willingdon Community",
@@ -35,13 +34,6 @@ function RequestDetail() {
       </h1>
       {/* --------------------------- placeholder for form*/}
       <DeliverForm products={products} />
-
-      <button
-        className="border px-8 py-3 rounded-xl text-[16px] mt-8 block"
-        onClick={() => navigate("/main/requests")}
-      >
-        &larr; Back
-      </button>
     </div>
   );
 }
