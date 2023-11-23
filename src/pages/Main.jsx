@@ -1,8 +1,10 @@
 import AppMap from "../features/map/AppMap";
+import SideBar from "../ui/SideBar";
 
 function Main() {
   return (
-    <div>
+    <div className="h-[100vh] p-10 flex">
+      <SideBar />
       <AppMap />
     </div>
   );

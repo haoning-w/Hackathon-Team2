@@ -9,6 +9,8 @@ import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
 import Toast from "./ui/Toast";
 import Home from "./pages/Home";
 import Main from "./pages/Main";
+import Requests from "./ui/Requests";
+import RequestDetail from "./ui/RequestDetail";
 
 const queryClient = new QueryClient();
 
@@ -22,7 +24,11 @@ function App() {
             <Route element={<AppLayout />}>
               <Route index replace element={<Navigate to="home" />} />
               <Route path="/home" element={<Home />} />
-              <Route path="/main" element={<Main />} />
+              <Route path="/main" element={<Main />}>
+                <Route index replace element={<Navigate to="requests" />} />
+                <Route path="/main/requests" element={<Requests />} />
+                <Route path="/main/requests/:id" element={<RequestDetail />} />
+              </Route>
               <Route path="/test" element={<Test />} />
             </Route>
           </Routes>
