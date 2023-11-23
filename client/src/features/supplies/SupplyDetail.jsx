@@ -20,7 +20,7 @@ function transformData(originalData) {
 function SupplyDetail() {
   const supply = transformData(getSuppliers());;
   const { id, name, timeStamp, address, latlng, products } = supply;
-  return (
+  return ( 
     <div className="mt-2">
       <h1 className="text-3xl font-bold mb-2">Supplies' info</h1>
       <div className="bg-[var(--color-dark--2)] px-12 py-6 rounded-2xl">
