@@ -42,21 +42,6 @@ function DonationForm() {
 
   function onSubmit(data) {
     const formData = {
-      // "userType": "d",
-      // "email": "tamy@gmail.com",
-      // "organizationName": "tcommunity 1",
-      // "address": "1234 Street",
-      // "products": [
-      //   {
-      //     "productName": "others",
-      //     "unitPrice": 10.0,
-      //     "totalPrice": 300.0,
-      //     "quantity": 30,
-      //     "historicalQuantity" : 20
-      //   }
-
-      // ]
-
       email: data.orgEmail,
       organizationName: data.orgName,
       address: data.orgAddress,

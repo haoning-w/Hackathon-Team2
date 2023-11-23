@@ -1,30 +1,23 @@
 import RequestItem from "./RequestItem";
+import getDemanders from "../services/getDemanders";
+
+function transformData(originalData) {
+  return originalData.map(item => {
+    return {
+      id: String(item.id), 
+      name: item.organizationName,
+      address: item.address,
+      products: item.products.map(product => ({
+        name: product.productName,
+        quantity: product.quantity
+      })),
+      timeStamp: new Date(item.products[0]?.createdAt).toLocaleString()
+    };
+  });
+}
 
 function Requests() {
-  const fakeData = [
-    {
-      id: "123455",
-      name: "Willingdon Community",
-      address: "123 Granvile St.",
-      latlng: { lat: 49.3043, lng: -123.1443 },
-      products: [
-        { name: "pads", quantity: 100 },
-        { name: "tampoon", quantity: 50 },
-      ],
-      timeStamp: "2023/11/27 14:08",
-    },
-    {
-      id: "4353454",
-      name: "NEU Community",
-      address: "6565 Robson St.",
-      latlng: { lat: 49.2887, lng: -123.1111 },
-      products: [
-        { name: "pads", quantity: 100 },
-        { name: "tampoon", quantity: 50 },
-      ],
-      timeStamp: "2023/11/23 14:08",
-    },
-  ];
+  const fakeData =  transformData(getDemanders());
 
   return (
     <ul>

@@ -1,18 +1,24 @@
 import DeliverForm from "../../ui/DeliverForm";
+import getSuppliers from "../../services/getSuppliers";
+
+function transformData(originalData) {
+  return originalData.map(item => {
+    return {
+      id: String(item.id), 
+      name: item.organizationName,
+      address: item.address,
+      products: item.products.map(product => ({
+        name: product.productName,
+        quantity: product.quantity
+      })),
+      timeStamp: new Date(item.products[0]?.createdAt).toLocaleString()
+    };
+  });
+}
+
 
 function SupplyDetail() {
-  const supply = {
-    id: "123455",
-    name: "London Drugs",
-    address: "4567 Lougheed Hwy. #400",
-    latlng: { lat: 49.2707608, lng: -123.0406674 },
-    products: [
-      { name: "pads", quantity: 700 },
-      { name: "tampoon", quantity: 200 },
-      { name: "liners", quantity: 150 },
-    ],
-    timeStamp: "2023/11/27 14:08",
-  };
+  const supply = transformData(getSuppliers());;
   const { id, name, timeStamp, address, latlng, products } = supply;
   return (
     <div className="mt-2">
