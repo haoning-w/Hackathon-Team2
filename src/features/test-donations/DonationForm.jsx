@@ -15,7 +15,7 @@ import { useState, useEffect } from "react";
 import DeleteIcon from "@mui/icons-material/Delete";
 
 function DonationForm() {
-  const [tableData, setTableData] = useState([]);
+  // const [tableData, setTableData] = useState([]);
   const [role, setRole] = useState("supplier");
   const [itemTotalPrices, setItemTotalPrices] = useState([]);
   const [sumPrice, setSumPrice] = useState(0);
@@ -41,8 +41,40 @@ function DonationForm() {
   });
 
   function onSubmit(data) {
-    const formData = { ...data, role };
-    setTableData([...tableData, ...formData.items]);
+    const formData = {
+      userType: data.role === "supplier" ? "s" : "d",
+      email: data.orgEmail,
+      organizationName: data.orgName,
+      address: data.orgAddress,
+      products: data.items.map((item) => ({
+        productName: item.productType,
+        unitPrice: parseFloat(item.unitPrice),
+        totalPrice: parseFloat(item.unitPrice) * parseFloat(item.quantity),
+        quantity: parseFloat(item.quantity),
+      })),
+    };
+    //setTableData([...tableData, ...formData.items]);
+    console.log(formData);
+
+    fetch("/api/your-endpoint", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(formData),
+    })
+      .then((response) => {
+        if (response.ok) {
+          toast.success("Successful! Thank you for your donation!");
+          reset();
+        } else {
+          toast.error("Failed to submit data. Please try again.");
+        }
+      })
+      .catch((error) => {
+        toast.error("An error occurred. Please try again later.");
+        console.error(error);
+      });
     reset();
     toast.success("Successful! Thank you for your donation!");
   }
@@ -93,6 +125,13 @@ function DonationForm() {
           />
         </RadioGroup>
       </FormControl>
+      <FormRow label="Organization Email" error={errors?.orgEmail?.message}>
+        <TextField
+          sx={{ input: { height: inputHeight } }}
+          id="orgEmail"
+          {...register("orgEmail", { required: "This field is required" })}
+        />
+      </FormRow>
       <FormRow label="Organization Name" error={errors?.orgName?.message}>
         <TextField
           sx={{ input: { height: inputHeight } }}
