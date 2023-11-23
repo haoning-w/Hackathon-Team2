@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
 import styles from "./SupplyItem.module.css";
-import { formatDate } from "../utils/helper";
+import { formatDate } from "../../utils/helper";
 
 function SupplyItem({ supply }) {
   const { id, name, timeStamp, address, latlng } = supply;
