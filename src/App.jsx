@@ -11,6 +11,8 @@ import Home from "./pages/Home";
 import Main from "./pages/Main";
 import Requests from "./ui/Requests";
 import RequestDetail from "./ui/RequestDetail";
+import SuppliesList from "./features/supplies/SuppliesList";
+import SupplyDetail from "./features/supplies/SupplyDetail";
 
 const queryClient = new QueryClient();
 
@@ -21,13 +23,15 @@ function App() {
       <Provider store={store}>
         <BrowserRouter>
           <Routes>
+            <Route path="/home" element={<Home />} />
             <Route element={<AppLayout />}>
               <Route index replace element={<Navigate to="home" />} />
-              <Route path="/home" element={<Home />} />
               <Route path="/main" element={<Main />}>
                 <Route index replace element={<Navigate to="requests" />} />
                 <Route path="/main/requests" element={<Requests />} />
                 <Route path="/main/requests/:id" element={<RequestDetail />} />
+                <Route path="/main/supplies" element={<SuppliesList />} />
+                <Route path="/main/supplies/:id" element={<SupplyDetail />} />
               </Route>
             </Route>
             <Route path="/test" element={<Test />} />

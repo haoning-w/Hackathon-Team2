@@ -1,15 +1,15 @@
 import { Link } from "react-router-dom";
-import styles from "./RequestItem.module.css";
+import styles from "./SupplyItem.module.css";
 import { formatDate } from "../utils/helper";
 
-function RequestItem({ request }) {
-  const { id, name, timeStamp, address, latlng } = request;
+function SupplyItem({ supply }) {
+  const { id, name, timeStamp, address, latlng } = supply;
   const { lat, lng } = latlng;
   return (
     <li className="mt-6">
       <Link
         to={`${id}?lat=${lat}&lng=${lng}`}
-        className={`${styles.requestItem}`}
+        className={`${styles.supplyItem}`}
       >
         <div className="w-full">
           <h1 className="text-[20px] font-bold">{name}</h1>
@@ -21,4 +21,4 @@ function RequestItem({ request }) {
   );
 }
 
-export default RequestItem;
+export default SupplyItem;

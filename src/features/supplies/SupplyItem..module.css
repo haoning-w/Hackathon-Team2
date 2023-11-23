@@ -1,6 +1,6 @@
-.requestItem,
-.requestItem:link,
-.requestItem:visited {
+.supplyItem,
+.supplyItem:link,
+.supplyItem:visited {
   display: flex;
   column-gap: 1.6rem;
   row-gap: 1rem;
@@ -16,7 +16,7 @@
   text-decoration: none;
 }
 
-.requestItem--active {
+.supplyItem--active {
   border: 2px solid var(--color-brand--2);
   border-left: 5px solid var(--color-brand--2);
 }

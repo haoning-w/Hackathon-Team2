@@ -35,8 +35,8 @@ const AppMap = () => {
     <Map
       ref={mapRef}
       initialViewState={{
-        longitude: -123.1443,
-        latitude: 49.3043,
+        longitude: -123.11441917777452,
+        latitude: 49.25968372351764,
         zoom: 12,
       }}
       style={{ width: "100%", height: "100%" }}
@@ -51,12 +51,10 @@ const AppMap = () => {
           latitude={item.coords[1]}
         >
           <div
-            onClick={
-              () =>
-                navigate(
-                  `requests/${item.id}?lat=${item.coords[1]}&lng=${item.coords[0]}`
-                )
-              // setSearchParams({ lat: item.coords[0], lng: item.coords[1] })
+            onClick={() =>
+              navigate(
+                `requests/${item.id}?lat=${item.coords[1]}&lng=${item.coords[0]}`
+              )
             }
             style={{ cursor: "pointer" }}
           >

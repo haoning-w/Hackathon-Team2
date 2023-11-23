@@ -1,4 +1,7 @@
+import { useNavigate } from "react-router-dom";
+
 function RequestDetail() {
+  const navigate = useNavigate();
   const request = {
     id: "123455",
     name: "Willingdon Community",
@@ -12,14 +15,26 @@ function RequestDetail() {
   };
   const { id, name, timeStamp, address, latlng, products } = request;
   return (
-    <div>
-      <h1>name: {name}</h1>
-      <h2>address: {address}</h2>
-      {products.map((product, ind) => (
-        <h3 key={ind}>
-          {product.name}: {product.quantity}
-        </h3>
-      ))}
+    <div className="mt-2">
+      <div className="bg-[#42484d] px-12 py-6 rounded-2xl">
+        <label>requester's info</label>
+        <h1 className="text-[18px]">name: {name}</h1>
+        <h1 className="text-[18px]">address: {address}</h1>
+      </div>
+      <div className="mt-8 bg-[#42484d] px-12 py-6 rounded-2xl">
+        <label>Product info</label>
+        {products.map((product, ind) => (
+          <h1 className="text-[18px]" key={ind}>
+            {product.name}: {product.quantity}
+          </h1>
+        ))}
+      </div>
+      <button
+        className="border px-8 py-3 rounded-xl text-[16px] mt-8"
+        onClick={() => navigate("/main/requests")}
+      >
+        &larr; Back
+      </button>
     </div>
   );
 }
