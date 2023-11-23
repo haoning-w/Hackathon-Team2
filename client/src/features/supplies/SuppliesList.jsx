@@ -1,3 +1,6 @@
+import addressToCoords from "../../services/getLocationCoords";
+import { dataToCoords } from "../../utils/helper";
+import useGetCoords from "../map/useGetCoords";
 import SupplyItem from "./SupplyItem";
 import getSuppliers from "../../services/getSuppliers";
 
@@ -19,6 +22,9 @@ function transformData(originalData) {
 function SuppliesList() {
 
   const fakeData = transformData(getSuppliers());
+
+  // const { data, isLoading } = useGetCoords("4567 Lougheed Hwy");
+  // if (!isLoading) console.log(dataToCoords(data));
 
   return (
     <ul>
