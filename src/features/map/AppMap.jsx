@@ -3,6 +3,7 @@ import { Marker, Map } from "react-map-gl";
 import "mapbox-gl/dist/mapbox-gl.css";
 import LocationOnRoundedIcon from "@mui/icons-material/LocationOnRounded";
 import { useNavigate, useSearchParams } from "react-router-dom";
+import useGetCoords from "./useGetCoords";
 
 const data = [
   { id: 123455, coords: [-123.1443, 49.3043], info: "Info 1", type: 1 },
@@ -13,6 +14,8 @@ const AppMap = () => {
   const [searchParams] = useSearchParams();
   const navigate = useNavigate();
   const mapRef = useRef(null);
+  // const { data: coords, isLoading } = useGetCoords("4500 Still Creek Dr");
+  // if (!isLoading) console.log(coords.features[0].center);
 
   const lat = parseFloat(searchParams.get("lat"));
   const lng = parseFloat(searchParams.get("lng"));
@@ -26,8 +29,7 @@ const AppMap = () => {
     }
   }, [lat, lng]);
 
-  const MAPBOX_TOKEN =
-    "pk.eyJ1IjoiaGFvbmluZy13IiwiYSI6ImNscDdsdzFqMjBtY2EyanFwdGU2dm1mMWMifQ._UUo7gy9CQSYwYlRpnWEIw";
+  const MAPBOX_TOKEN = import.meta.env.VITE_MAP_TOKEN;
 
   return (
     <Map
