@@ -42,7 +42,22 @@ function DonationForm() {
 
   function onSubmit(data) {
     const formData = {
-      userType: data.role === "supplier" ? "s" : "d",
+      // "userType": "d",
+      // "email": "tamy@gmail.com",
+      // "organizationName": "tcommunity 1",
+      // "address": "1234 Street",
+      // "products": [
+      //   {
+      //     "productName": "others",
+      //     "unitPrice": 10.0,
+      //     "totalPrice": 300.0,
+      //     "quantity": 30,
+      //     "historicalQuantity" : 20
+      //   }
+
+      // ]
+
+      userType: "s",
       email: data.orgEmail,
       organizationName: data.orgName,
       address: data.orgAddress,
@@ -51,12 +66,12 @@ function DonationForm() {
         unitPrice: parseFloat(item.unitPrice),
         totalPrice: parseFloat(item.unitPrice) * parseFloat(item.quantity),
         quantity: parseFloat(item.quantity),
+        historicalQuantity: 20,
       })),
     };
     //setTableData([...tableData, ...formData.items]);
-    console.log(formData);
 
-    fetch("/api/your-endpoint", {
+    fetch(`http://localhost:8000/${role}`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -113,6 +128,7 @@ function DonationForm() {
           value={role}
           onChange={(e) => setRole(e.target.value)}
         >
+          <input type="hidden" {...register("role")} value={role} />
           <FormControlLabel
             value="supplier"
             control={<Radio />}
