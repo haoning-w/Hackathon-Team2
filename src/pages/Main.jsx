@@ -3,7 +3,7 @@ import SideBar from "../ui/SideBar";
 
 function Main() {
   return (
-    <div className="h-[100vh] p-10 flex">
+    <div className="h-[100vh] flex">
       <SideBar />
       <AppMap />
     </div>

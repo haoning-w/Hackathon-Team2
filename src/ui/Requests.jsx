@@ -17,7 +17,7 @@ function Requests() {
       id: "4353454",
       name: "NEU Community",
       address: "6565 Robson St.",
-      latlng: { lat: 49, lng: -123 },
+      latlng: { lat: 49.2887, lng: -123.1111 },
       products: [
         { name: "pads", quantity: 100 },
         { name: "tampoon", quantity: 50 },

@@ -4,7 +4,6 @@ import TestDashboard from "../features/test-donations/TestDashboard";
 import CartOverview from "../features/test-feature/CartOverview";
 import toast from "react-hot-toast";
 import TestMap from "../features/test-feature/TestMap";
-import SideBar from "../ui/SideBar";
 
 function Test() {
   return (
@@ -12,7 +11,6 @@ function Test() {
       <p className="text-emerald-500 text-[48px] text-center">
         Test all kinds of stuff
       </p>
-      <SideBar />
       <Button
         variant="contained"
         sx={{ margin: "8px auto", display: "block" }}
@@ -23,7 +21,7 @@ function Test() {
       <DonationForm />
       <CartOverview />
       <TestDashboard />
-      <div className="h-[600px]">
+      <div className="h-[400px]">
         <TestMap />
       </div>
     </div>

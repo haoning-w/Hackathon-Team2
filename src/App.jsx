@@ -29,8 +29,8 @@ function App() {
                 <Route path="/main/requests" element={<Requests />} />
                 <Route path="/main/requests/:id" element={<RequestDetail />} />
               </Route>
-              <Route path="/test" element={<Test />} />
             </Route>
+            <Route path="/test" element={<Test />} />
           </Routes>
         </BrowserRouter>
         <Toast />
