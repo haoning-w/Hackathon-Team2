@@ -29,6 +29,7 @@ function DeliverForm({ products }) {
       </div>
       <div className="flex justify-between">
         <button
+          type="button"
           className="border px-8 py-3 rounded-xl text-[16px] mt-4 block"
           onClick={() => navigate(-1)}
         >

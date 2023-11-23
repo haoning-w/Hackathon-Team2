@@ -32,7 +32,6 @@ function RequestDetail() {
       <h1 className="mt-8 mb-2 text-3xl font-bold">
         Number of products you can deliver
       </h1>
-      {/* --------------------------- placeholder for form*/}
       <DeliverForm products={products} />
     </div>
   );
