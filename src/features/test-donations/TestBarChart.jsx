@@ -1,5 +1,5 @@
 function TestBarChart() {
-  return <div>just to test</div>;
+  return <div>just to nnntest</div>;
 }
 
 export default TestBarChart;
