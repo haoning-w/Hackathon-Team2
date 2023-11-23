@@ -57,7 +57,6 @@ function DonationForm() {
 
       // ]
 
-      userType: "s",
       email: data.orgEmail,
       organizationName: data.orgName,
       address: data.orgAddress,
@@ -66,7 +65,6 @@ function DonationForm() {
         unitPrice: parseFloat(item.unitPrice),
         totalPrice: parseFloat(item.unitPrice) * parseFloat(item.quantity),
         quantity: parseFloat(item.quantity),
-        historicalQuantity: 20,
       })),
     };
     //setTableData([...tableData, ...formData.items]);
