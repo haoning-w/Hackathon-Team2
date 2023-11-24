@@ -11,16 +11,20 @@ function Home() {
         </div>
         <div className="mb-8">
           <label>Email</label>
-          <input className="text-gray-600" defaultValue="example@uwbc.ca"/>
+          <input className="text-gray-600" defaultValue="example@uwbc.ca" />
         </div>
         <div>
           <label>Password</label>
-          <input className="text-gray-600" type="password" defaultValue="defaultPassword" />
+          <input
+            className="text-gray-600"
+            type="password"
+            defaultValue="defaultPassword"
+          />
         </div>
         <div className="flex justify-center">
           <button
             className="mt-10 text-[24px] bg-[#00c46a] text-gray-600 px-8 py-2 rounded-xl"
-            onClick={() => navigate("/dashboard")}
+            onClick={() => navigate("/dashboard/requester")}
           >
             Log In
           </button>

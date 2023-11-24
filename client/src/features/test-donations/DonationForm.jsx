@@ -71,10 +71,8 @@ function DonationForm() {
       })
       .catch((error) => {
         toast.error("An error occurred. Please try again later.");
-        console.error(error);
+        console.log(error);
       });
-    reset();
-    toast.success("Successful! Thank you for your donation!");
   }
 
   const updateItemTotalPrice = (index, totalPrice) => {
@@ -85,7 +83,6 @@ function DonationForm() {
 
   const calculateSumPrice = () => {
     const total = itemTotalPrices.reduce((acc, price) => {
-      // 确保每个 price 都是数值类型
       return acc + (parseFloat(price) || 0);
     }, 0);
     setSumPrice(total);
@@ -95,7 +92,7 @@ function DonationForm() {
     setSumPrice(total);
   }, [itemTotalPrices]);
 
-  const inputHeight = "4px";
+  const inputHeight = "12px";
 
   return (
     <form

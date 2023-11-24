@@ -1,12 +1,13 @@
 import { Link } from "react-router-dom";
 import styles from "./SupplyItem.module.css";
-import { formatDate } from "../../utils/helper";
 
 function SupplyItem({ supply }) {
-  const { id, name, timeStamp, address, latlng } = supply;
+  const { id, name, address, latlng, products } = supply;
   const { lat, lng } = latlng;
+  const totalAmount = products.reduce((acc, cur) => cur.quantity + acc, 0);
+
   return (
-    <li className="mt-6">
+    <li className="mt-6 w-[400px]">
       <Link
         to={`${id}?lat=${lat}&lng=${lng}`}
         className={`${styles.supplyItem}`}
@@ -15,7 +16,7 @@ function SupplyItem({ supply }) {
           <h1 className="text-[20px] font-bold">{name}</h1>
         </div>
         <h3 className={styles.name}>{address}</h3>
-        <time className={styles.date}>{formatDate(timeStamp)}</time>
+        <p className="text-2xl font-bold">Amount: {totalAmount}</p>
       </Link>
     </li>
   );

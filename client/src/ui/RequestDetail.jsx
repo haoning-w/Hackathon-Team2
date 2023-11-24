@@ -31,7 +31,7 @@ function RequestDetail() {
         ))}
       </div>
       <h1 className="mt-8 mb-2 text-3xl font-bold">
-        Number of products you'll drop
+        Number of products you'll deliver
       </h1>
       <DeliverForm products={products} />
     </div>

@@ -44,7 +44,6 @@ const AppMap = () => {
       style={{ width: "100%", height: "100%" }}
       mapStyle="mapbox://styles/mapbox/streets-v10"
       mapboxAccessToken={MAPBOX_TOKEN}
-      onClick={(e) => console.log(e.lngLat)}
     >
       {allRequests.map((item, index) => (
         <Marker
@@ -75,7 +74,7 @@ const AppMap = () => {
           <div
             onClick={() =>
               navigate(
-                `requests/${item.id}?lat=${item.latlng.lat}&lng=${item.latlng.lng}`
+                `supplies/${item.id}?lat=${item.latlng.lat}&lng=${item.latlng.lng}`
               )
             }
             style={{ cursor: "pointer" }}

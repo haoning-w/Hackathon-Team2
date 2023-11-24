@@ -7,7 +7,6 @@ function SupplyDetail() {
   const { data, isLoading } = useGetSuppliers();
   const { id } = useParams();
   if (isLoading) return null;
-  console.log(data);
   const supply = data.find((item) => item.id === Number(id));
   const {
     id: supplyId,

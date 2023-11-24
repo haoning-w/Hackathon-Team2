@@ -1,12 +1,11 @@
 import Menu from "../ui/Menu";
-import { Outlet } from 'react-router-dom';
-
+import { Outlet } from "react-router-dom";
 
 function Dashboard() {
   return (
-    <div>
+    <div className="bg-[var(--color-dark--1)] h-[100vh]">
       <Menu />
-      <Outlet /> 
+      <Outlet />
     </div>
   );
 }
