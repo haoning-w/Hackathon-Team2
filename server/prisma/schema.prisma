@@ -19,6 +19,8 @@ model Supplier {
   email             String   @unique
   organizationName  String   
   address           String
+  longitude         Float
+  latitude          Float
   products          SupplierProduct[]
 }
 
@@ -40,8 +42,10 @@ model Demander {
   id                Int       @id @default(autoincrement())
   userType          String    @default("d")
   email             String    @unique
-  organizationName      String 
+  organizationName  String 
   address           String
+  longitude         Float
+  latitude          Float
   products          DemanderProduct[]
 }
 
@@ -58,7 +62,6 @@ model DemanderProduct {
 }
 
 
-// 暂时用不着
 // model Deliverer {
 //   id                Int      @id @default(autoincrement())
 //   userType              String   @default("v") 
