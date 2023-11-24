@@ -6,7 +6,6 @@ function SuppliesList() {
   const { data, isLoading } = useGetSuppliers();
 
   if (isLoading) return null;
-  console.log(data);
 
   const realData = transformData(data);
 

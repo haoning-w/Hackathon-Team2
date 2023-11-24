@@ -16,7 +16,9 @@ function DeliverForm({ products }) {
           key={ind}
           className="w-[100%] flex justify-between mt-4 align-middle bg-[var(--color-dark--2)] px-4 py-4 rounded-2xl"
         >
-          <label className="h-[100%] my-auto text-center">{item.name}</label>
+          <label className="h-[100%] my-auto text-center">
+            {item.productName}
+          </label>
           <input
             {...register(`product_${ind}`)}
             className="text-[var(--color-dark--1)] w-32 h-[32px]"
