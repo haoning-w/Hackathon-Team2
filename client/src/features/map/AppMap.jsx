@@ -3,17 +3,15 @@ import { Marker, Map } from "react-map-gl";
 import "mapbox-gl/dist/mapbox-gl.css";
 import LocationOnRoundedIcon from "@mui/icons-material/LocationOnRounded";
 import { useNavigate, useSearchParams } from "react-router-dom";
-import useGetCoords from "./useGetCoords";
-
-const data = [
-  { id: 123455, coords: [-123.1443, 49.3043], info: "Info 1", type: 1 },
-  { id: 4353454, coords: [-123.1111, 49.2887], info: "Info 2", type: 2 },
-];
+import useGetRequests from "../requests/useGetRequests";
 
 const AppMap = () => {
+  const { data: allRequests, isLoading: isLoadingRequests } = useGetRequests();
+
   const [searchParams] = useSearchParams();
   const navigate = useNavigate();
   const mapRef = useRef(null);
+
   // const { data: coords, isLoading } = useGetCoords("4500 Still Creek Dr");
   // if (!isLoading) console.log(coords.features[0].center);
 
@@ -28,6 +26,8 @@ const AppMap = () => {
       });
     }
   }, [lat, lng]);
+
+  if (isLoadingRequests) return null;
 
   const MAPBOX_TOKEN = import.meta.env.VITE_MAP_TOKEN;
 
@@ -44,16 +44,16 @@ const AppMap = () => {
       mapboxAccessToken={MAPBOX_TOKEN}
       onClick={(e) => console.log(e.lngLat)}
     >
-      {data.map((item, index) => (
+      {allRequests.map((item, index) => (
         <Marker
           key={index}
-          longitude={item.coords[0]}
-          latitude={item.coords[1]}
+          longitude={item.latlng.lng}
+          latitude={item.latlng.lat}
         >
           <div
             onClick={() =>
               navigate(
-                `requests/${item.id}?lat=${item.coords[1]}&lng=${item.coords[0]}`
+                `requests/${item.id}?lat=${item.latlng.lat}&lng=${item.latlng.lng}`
               )
             }
             style={{ cursor: "pointer" }}

@@ -12,6 +12,7 @@ function transformData(originalData) {
         name: product.productName,
         quantity: product.quantity,
       })),
+      latlng: item.latlng,
       timeStamp: new Date(item.products[0]?.createdAt).toLocaleString(),
     };
   });
@@ -21,7 +22,7 @@ function Requests() {
   const { data, isLoading } = useGetRequests();
 
   if (isLoading) return null;
-
+  console.log(data);
   const realData = transformData(data);
 
   return (

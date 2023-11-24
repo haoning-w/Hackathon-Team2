@@ -16,3 +16,19 @@ export function dataToCoords(data) {
     lng: data.features[0].geometry.coordinates[0],
   };
 }
+
+export function transformData(originalData) {
+  return originalData.map((item) => {
+    return {
+      id: String(item.id),
+      name: item.organizationName,
+      address: item.address,
+      products: item.products.map((product) => ({
+        name: product.productName,
+        quantity: product.quantity,
+      })),
+      latlng: item.latlng,
+      timeStamp: new Date(item.products[0]?.createdAt).toLocaleString(),
+    };
+  });
+}
