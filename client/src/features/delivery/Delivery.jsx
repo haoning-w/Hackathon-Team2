@@ -14,7 +14,7 @@ function Delivery() {
           (item, ind) =>
             products[item] > 0 && (
               <label className="mr-6 text-[24px]" key={ind}>
-                {item}: {products[item]}/{products[item]}
+                {item}: {products[item]}
               </label>
             )
         )}
