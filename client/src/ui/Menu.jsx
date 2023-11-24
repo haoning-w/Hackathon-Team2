@@ -11,6 +11,12 @@ function Menu() {
         <NavLink to="/main" className={navLinkStyle}>
           Logistics
         </NavLink>
+        <NavLink to="/dashboard/supplier" className={navLinkStyle}>
+          Supplier
+        </NavLink>
+        <NavLink to="/dashboard/demander" className={navLinkStyle}>
+          Demander
+        </NavLink>
       </div>
     </div>
   );

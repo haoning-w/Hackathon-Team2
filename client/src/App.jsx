@@ -14,6 +14,8 @@ import RequestDetail from "./ui/RequestDetail";
 import SuppliesList from "./features/supplies/SuppliesList";
 import SupplyDetail from "./features/supplies/SupplyDetail";
 import Dashboard from "./pages/Dashboard";
+import Supplier from "./pages/Supplier"
+import Demander from "./pages/Demander.jsx"
 
 const queryClient = new QueryClient();
 
@@ -25,7 +27,10 @@ function App() {
         <BrowserRouter>
           <Routes>
             <Route path="/home" element={<Home />} />
-            <Route path="/dashboard" element={<Dashboard />} />
+            <Route path="/dashboard" element={<Dashboard />}>
+            <Route path="supplier" element={<Supplier />} />
+            <Route path="demander" element={<Demander />} />
+            </Route>
             <Route element={<AppLayout />}>
               <Route index replace element={<Navigate to="home" />} />
               <Route path="/main" element={<Main />}>
