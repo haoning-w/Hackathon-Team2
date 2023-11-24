@@ -1,29 +1,12 @@
-import addressToCoords from "../../services/getLocationCoords";
-import { dataToCoords } from "../../utils/helper";
-import useGetCoords from "../map/useGetCoords";
+import { transformData } from "../../utils/helper";
 import SupplyItem from "./SupplyItem";
-import getSuppliers from "../../services/getSuppliers";
-import useGetRequests from "../requests/useGetRequests";
-
-function transformData(originalData) {
-  return originalData.map((item) => {
-    return {
-      id: String(item.id),
-      name: item.organizationName,
-      address: item.address,
-      products: item.products.map((product) => ({
-        name: product.productName,
-        quantity: product.quantity,
-      })),
-      timeStamp: new Date(item.products[0]?.createdAt).toLocaleString(),
-    };
-  });
-}
+import useGetSuppliers from "../map/useGetSuppliers";
 
 function SuppliesList() {
-  const { data, isLoading } = useGetRequests();
+  const { data, isLoading } = useGetSuppliers();
 
   if (isLoading) return null;
+  console.log(data);
 
   const realData = transformData(data);
 

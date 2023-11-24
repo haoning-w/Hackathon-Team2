@@ -1,5 +1,4 @@
 import RequestItem from "./RequestItem";
-import getDemanders from "../services/getDemanders";
 import useGetRequests from "../features/requests/useGetRequests";
 
 function transformData(originalData) {
@@ -22,7 +21,7 @@ function Requests() {
   const { data, isLoading } = useGetRequests();
 
   if (isLoading) return null;
-  console.log(data);
+
   const realData = transformData(data);
 
   return (

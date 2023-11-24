@@ -4,9 +4,11 @@ import "mapbox-gl/dist/mapbox-gl.css";
 import LocationOnRoundedIcon from "@mui/icons-material/LocationOnRounded";
 import { useNavigate, useSearchParams } from "react-router-dom";
 import useGetRequests from "../requests/useGetRequests";
+import useGetSuppliers from "./useGetSuppliers";
 
 const AppMap = () => {
   const { data: allRequests, isLoading: isLoadingRequests } = useGetRequests();
+  const { data: allSupplies, isLoading: isLoadingSupplies } = useGetSuppliers();
 
   const [searchParams] = useSearchParams();
   const navigate = useNavigate();
@@ -27,7 +29,7 @@ const AppMap = () => {
     }
   }, [lat, lng]);
 
-  if (isLoadingRequests) return null;
+  if (isLoadingRequests || isLoadingSupplies) return null;
 
   const MAPBOX_TOKEN = import.meta.env.VITE_MAP_TOKEN;
 
@@ -60,6 +62,26 @@ const AppMap = () => {
           >
             <LocationOnRoundedIcon
               style={{ color: "#f87171", fontSize: "48px" }}
+            />
+          </div>
+        </Marker>
+      ))}
+      {allSupplies.map((item, index) => (
+        <Marker
+          key={index}
+          longitude={item.latlng.lng}
+          latitude={item.latlng.lat}
+        >
+          <div
+            onClick={() =>
+              navigate(
+                `requests/${item.id}?lat=${item.latlng.lat}&lng=${item.latlng.lng}`
+              )
+            }
+            style={{ cursor: "pointer" }}
+          >
+            <LocationOnRoundedIcon
+              style={{ color: "#2563eb", fontSize: "48px" }}
             />
           </div>
         </Marker>

@@ -28,32 +28,28 @@ app.get("/suppliers", async (req, res) => {
     include: {
       // Include the project information
       products: true,
-    }
+    },
   });
 
-    const promises = allSuppliers.map(async (supplier) => {
-      const coords = await addressToCoords(supplier.address);
-      // Return a new object with the original demander data and the coords
-      return { ...supplier, coords };
-    });
-  
-    // Use Promise.all to wait for all promises to resolve
-    const suppliersWithCoords = await Promise.all(promises);
-  
-    const finalData = suppliersWithCoords.map((item, ind) => ({
-      ...item,
-      latlng: {
-        lat: suppliersWithCoords[ind].coords.features[0].geometry.coordinates[1],
-        lng: suppliersWithCoords[ind].coords.features[0].geometry.coordinates[0],
-      },
-    }));
-  
-    res.json(finalData);
+  const promises = allSuppliers.map(async (supplier) => {
+    const coords = await addressToCoords(supplier.address);
+    // Return a new object with the original demander data and the coords
+    return { ...supplier, coords };
   });
 
+  // Use Promise.all to wait for all promises to resolve
+  const suppliersWithCoords = await Promise.all(promises);
 
+  const finalData = suppliersWithCoords.map((item, ind) => ({
+    ...item,
+    latlng: {
+      lat: item.coords.features[0].geometry.coordinates[1],
+      lng: item.coords.features[0].geometry.coordinates[0],
+    },
+  }));
 
-
+  res.json(finalData);
+});
 
 // 2. create a new supplier (with at least one product)
 app.post("/supplier", async (req, res) => {
@@ -124,12 +120,15 @@ app.get("/demanders", async (req, res) => {
 
   // Use Promise.all to wait for all promises to resolve
   const demandersWithCoords = await Promise.all(promises);
-
+  // demandersWithCoords.forEach((item, ind) =>
+  //   console.log(item.email, item.id, item.coords.features[0].geometry)
+  // );
+  // res.json(demandersWithCoords);
   const finalData = demandersWithCoords.map((item, ind) => ({
     ...item,
     latlng: {
-      lat: demandersWithCoords[ind].coords.features[0].geometry.coordinates[1],
-      lng: demandersWithCoords[ind].coords.features[0].geometry.coordinates[0],
+      lat: item.coords.features[0].geometry.coordinates[1],
+      lng: item.coords.features[0].geometry.coordinates[0],
     },
   }));
 
