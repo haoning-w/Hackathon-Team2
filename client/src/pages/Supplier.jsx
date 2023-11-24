@@ -65,7 +65,9 @@ import {
           toast.error("An error occurred. Please try again later.");
           console.error(error);
         });
+        setSumPrice(0);
       reset();
+      
       toast.success("Successful! Thank you for your donation!");
     }
   
@@ -190,7 +192,7 @@ import {
           </Button>
   
           <div className="flex items-center text-red-500 font-bold">
-            Total Sum Price: {sumPrice}
+            Total: {sumPrice}
           </div>
           <Button type="submit" variant="contained" className="w-1/6">
             Submit
