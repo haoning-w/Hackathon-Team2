@@ -19,8 +19,8 @@ model Supplier {
   email             String   @unique
   organizationName  String   
   address           String
-  longitude         Float
-  latitude          Float
+  // longitude         Float
+  // latitude          Float
   products          SupplierProduct[]
 }
 
@@ -44,8 +44,8 @@ model Demander {
   email             String    @unique
   organizationName  String 
   address           String
-  longitude         Float
-  latitude          Float
+  // longitude         Float
+  // latitude          Float
   products          DemanderProduct[]
 }
 
