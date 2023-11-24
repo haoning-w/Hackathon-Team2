@@ -10,11 +10,11 @@ function Home() {
           <Logo />
         </div>
         <div className="mb-8">
-          <label>Email</label>
+          <label className="text-slate-100">Email</label>
           <input className="text-gray-600" defaultValue="example@uwbc.ca" />
         </div>
         <div>
-          <label>Password</label>
+          <label className="text-slate-100">Password</label>
           <input
             className="text-gray-600"
             type="password"
