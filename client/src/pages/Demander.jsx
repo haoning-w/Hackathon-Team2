@@ -98,6 +98,7 @@ import {
         className="w-[1000px] ml-auto mr-auto mb-8 flex flex-col gap-2 px-10 py-16 align-middle bg-slate-100"
         onSubmit={handleSubmit(onSubmit)}
       >
+
         <FormRow label="Email" error={errors?.orgEmail?.message}>
           <TextField
             sx={{ input: { height: inputHeight } }}
