@@ -271,6 +271,95 @@ app.put("/dproduct/:id", async (req, res) => {
 });
 
 
+// 11. fetch supplier's annual data
+app.get('/supplier-products/yearly-summary', async (req, res) => {
+    const year = parseInt(req.query.year);
+
+    // for front-end: 
+    // The URL might look something like this: 
+    // http://yourserver.com/api/supplier-products/yearly-summary?year=2023
+
+    try {
+        const summary = await getSupplierYearlySummary(year);
+        res.json(summary);
+    } catch (error) {
+        res.status(500).send("Error fetching yearly summary: " + error.message);
+    }
+});
+
+
+
+// 11 helper function
+async function getSupplierYearlySummary(year) {
+    const startDate = new Date(year, 0, 1); // January 1st of the year
+    const endDate = new Date(year + 1, 0, 1); // January 1st of the next year
+
+    return await prisma.supplierProduct.findMany({
+        where: {
+            createdAt: {
+                gte: startDate,
+                lt: endDate
+            }
+        },
+        select: {
+            supplier: {
+                select: {
+                    // show supplier's id and name
+                    id: true,
+                    organizationName: true
+                }
+            },
+            // show products info
+            productName: true,
+            totalPrice: true,
+            historicalQuantity: true
+        }
+    });
+}
+
+
+// 12. fetch demander's annual data
+app.get('/demander-products/yearly-summary', async (req, res) => {
+    const year = parseInt(req.query.year);
+
+    try {
+        const summary = await getDemanderYearlySummary(year);
+        res.json(summary);
+    } catch (error) {
+        res.status(500).send("Error fetching yearly summary: " + error.message);
+    }
+});
+
+
+
+// 12 helper function
+async function getDemanderYearlySummary(year) {
+    const startDate = new Date(year, 0, 1); // January 1st of the year
+    const endDate = new Date(year + 1, 0, 1); // January 1st of the next year
+
+    return await prisma.demanderProduct.findMany({
+        where: {
+            createdAt: {
+                gte: startDate,
+                lt: endDate
+            }
+        },
+        select: {
+            demander: {
+                select: {
+                    // show demander's id and name
+                    id: true,
+                    organizationName: true
+                }
+            },
+            // show products info
+            productName: true,
+            totalPrice: true,
+            historicalQuantity: true
+        }
+    });
+}
+
 
 
 // Start the server
