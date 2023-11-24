@@ -9,7 +9,7 @@ function SupplyItem({ supply }) {
   return (
     <li className="mt-6 w-[400px]">
       <Link
-        to={`${id}?lat=${lat}&lng=${lng}`}
+        to={`${id}?lat=${lat}&lng=${lng}&form=supply`}
         className={`${styles.supplyItem}`}
       >
         <div className="w-full">

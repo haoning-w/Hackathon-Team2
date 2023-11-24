@@ -1,4 +1,4 @@
-import { transformData } from "../../utils/helper";
+import { productAmount, transformData } from "../../utils/helper";
 import SupplyItem from "./SupplyItem";
 import useGetSuppliers from "../map/useGetSuppliers";
 
@@ -14,9 +14,10 @@ function SuppliesList() {
 
   return (
     <ul>
-      {realData.map((item) => (
-        <SupplyItem key={item.id} supply={item} />
-      ))}
+      {realData.map(
+        (item) =>
+          productAmount(item) > 0 && <SupplyItem key={item.id} supply={item} />
+      )}
     </ul>
   );
 }

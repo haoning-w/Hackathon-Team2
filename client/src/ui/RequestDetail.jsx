@@ -1,4 +1,3 @@
-import { useNavigate } from "react-router-dom";
 import DeliverForm from "./DeliverForm";
 import useGetRequests from "../features/requests/useGetRequests";
 import { useParams } from "react-router-dom";
@@ -6,6 +5,7 @@ import { useParams } from "react-router-dom";
 function RequestDetail() {
   const { data, isLoading } = useGetRequests();
   const { id } = useParams();
+  if (isLoading) return null;
   const request = data.find((item) => item.id === Number(id));
   const {
     id: requestId,

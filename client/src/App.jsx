@@ -32,7 +32,11 @@ function App() {
               <Route path="requester" element={<Demander />} />
             </Route>
             <Route element={<AppLayout />}>
-              <Route index replace element={<Navigate to="home" />} />
+              <Route
+                index
+                replace
+                element={<Navigate to="/dashboard/supplier" />}
+              />
               <Route path="/main" element={<Main />}>
                 <Route index replace element={<Navigate to="requests" />} />
                 <Route path="/main/requests" element={<Requests />} />

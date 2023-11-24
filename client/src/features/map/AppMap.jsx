@@ -5,6 +5,7 @@ import LocationOnRoundedIcon from "@mui/icons-material/LocationOnRounded";
 import { useNavigate, useSearchParams } from "react-router-dom";
 import useGetRequests from "../requests/useGetRequests";
 import useGetSuppliers from "./useGetSuppliers";
+import { productAmount } from "../../utils/helper";
 
 const AppMap = () => {
   const { data: allRequests, isLoading: isLoadingRequests } = useGetRequests();
@@ -34,58 +35,64 @@ const AppMap = () => {
   const MAPBOX_TOKEN = import.meta.env.VITE_MAP_TOKEN;
 
   return (
-    <Map
-      ref={mapRef}
-      initialViewState={{
-        longitude: -123.11441917777452,
-        latitude: 49.25968372351764,
-        zoom: 12,
-      }}
-      style={{ width: "100%", height: "100%" }}
-      mapStyle="mapbox://styles/mapbox/streets-v10"
-      mapboxAccessToken={MAPBOX_TOKEN}
-    >
-      {allRequests.map((item, index) => (
-        <Marker
-          key={index}
-          longitude={item.latlng.lng}
-          latitude={item.latlng.lat}
-        >
-          <div
-            onClick={() =>
-              navigate(
-                `requests/${item.id}?lat=${item.latlng.lat}&lng=${item.latlng.lng}`
-              )
-            }
-            style={{ cursor: "pointer" }}
-          >
-            <LocationOnRoundedIcon
-              style={{ color: "#f87171", fontSize: "48px" }}
-            />
-          </div>
-        </Marker>
-      ))}
-      {allSupplies.map((item, index) => (
-        <Marker
-          key={index}
-          longitude={item.latlng.lng}
-          latitude={item.latlng.lat}
-        >
-          <div
-            onClick={() =>
-              navigate(
-                `supplies/${item.id}?lat=${item.latlng.lat}&lng=${item.latlng.lng}`
-              )
-            }
-            style={{ cursor: "pointer" }}
-          >
-            <LocationOnRoundedIcon
-              style={{ color: "#2563eb", fontSize: "48px" }}
-            />
-          </div>
-        </Marker>
-      ))}
-    </Map>
+    <div className="w-[100%] absolute inset-0 mb-24">
+      <Map
+        ref={mapRef}
+        initialViewState={{
+          longitude: -123.11441917777452,
+          latitude: 49.25968372351764,
+          zoom: 12,
+        }}
+        style={{ width: "100%", height: "100%" }}
+        mapStyle="mapbox://styles/mapbox/streets-v10"
+        mapboxAccessToken={MAPBOX_TOKEN}
+      >
+        {allRequests.map((item, index) =>
+          productAmount(item) > 0 ? (
+            <Marker
+              key={index}
+              longitude={item.latlng.lng}
+              latitude={item.latlng.lat}
+            >
+              <div
+                onClick={() =>
+                  navigate(
+                    `requests/${item.id}?lat=${item.latlng.lat}&lng=${item.latlng.lng}&form=request`
+                  )
+                }
+                style={{ cursor: "pointer" }}
+              >
+                <LocationOnRoundedIcon
+                  style={{ color: "#f87171", fontSize: "48px" }}
+                />
+              </div>
+            </Marker>
+          ) : null
+        )}
+        {allSupplies.map((item, index) =>
+          productAmount(item) > 0 ? (
+            <Marker
+              key={index}
+              longitude={item.latlng.lng}
+              latitude={item.latlng.lat}
+            >
+              <div
+                onClick={() =>
+                  navigate(
+                    `supplies/${item.id}?lat=${item.latlng.lat}&lng=${item.latlng.lng}&form=supply`
+                  )
+                }
+                style={{ cursor: "pointer" }}
+              >
+                <LocationOnRoundedIcon
+                  style={{ color: "#2563eb", fontSize: "48px" }}
+                />
+              </div>
+            </Marker>
+          ) : null
+        )}
+      </Map>
+    </div>
   );
 };
 

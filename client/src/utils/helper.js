@@ -32,3 +32,7 @@ export function transformData(originalData) {
     };
   });
 }
+
+export function productAmount(item) {
+  return item.products.reduce((acc, cur) => acc + cur.quantity, 0);
+}

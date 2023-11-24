@@ -1,11 +1,15 @@
+import Delivery from "../features/delivery/Delivery";
 import AppMap from "../features/map/AppMap";
 import SideBar from "../ui/SideBar";
 
 function Main() {
   return (
-    <div className="h-[100%] flex">
+    <div className="h-[100vh] flex w-full">
       <SideBar />
-      <AppMap />
+      <div className="relative flex-grow">
+        <AppMap />
+        <Delivery />
+      </div>
     </div>
   );
 }

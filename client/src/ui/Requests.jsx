@@ -1,5 +1,6 @@
 import RequestItem from "./RequestItem";
 import useGetRequests from "../features/requests/useGetRequests";
+import { productAmount } from "../utils/helper";
 
 function transformData(originalData) {
   return originalData.map((item) => {
@@ -26,9 +27,12 @@ function Requests() {
 
   return (
     <ul>
-      {realData.map((item) => (
-        <RequestItem key={item.id} request={item} />
-      ))}
+      {realData.map(
+        (item) =>
+          productAmount(item) > 0 && (
+            <RequestItem key={item.id} request={item} />
+          )
+      )}
     </ul>
   );
 }

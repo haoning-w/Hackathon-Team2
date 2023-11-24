@@ -1,5 +1,4 @@
 import DeliverForm from "../../ui/DeliverForm";
-import getSuppliers from "../../services/getSuppliers";
 import useGetSuppliers from "../map/useGetSuppliers";
 import { useParams } from "react-router-dom";
 
@@ -8,13 +7,7 @@ function SupplyDetail() {
   const { id } = useParams();
   if (isLoading) return null;
   const supply = data.find((item) => item.id === Number(id));
-  const {
-    id: supplyId,
-    organizationName,
-    timeStamp,
-    address,
-    products,
-  } = supply;
+  const { organizationName, address, products } = supply;
   return (
     <div className="mt-2">
       <h1 className="text-3xl font-bold mb-2">Supplies' info</h1>
