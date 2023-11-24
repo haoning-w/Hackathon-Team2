@@ -2,11 +2,6 @@ import {
     Button,
     TextField,
     IconButton,
-    Radio,
-    RadioGroup,
-    FormControlLabel,
-    FormControl,
-    FormLabel,
   } from "@mui/material";
   import { useForm, useFieldArray } from "react-hook-form";
   import FormRow from "../ui/FormRow"
@@ -15,7 +10,6 @@ import {
   import DeleteIcon from "@mui/icons-material/Delete";
   
   function Demander() {
-    const [role, setRole] = useState("supplier");
     const [itemTotalPrices, setItemTotalPrices] = useState([]);
     const [sumPrice, setSumPrice] = useState(0);
   
@@ -71,6 +65,7 @@ import {
           toast.error("An error occurred. Please try again later.");
           console.error(error);
         });
+      setSumPrice(0);
       reset();
       toast.success("Successful! Thank you for your donation!");
     }
@@ -98,6 +93,7 @@ import {
         className="w-[1000px] ml-auto mr-auto mb-8 flex flex-col gap-2 px-10 py-16 align-middle bg-slate-100"
         onSubmit={handleSubmit(onSubmit)}
       >
+      <h2 className="text-5xl font-bold mb-4">We Will Help You!</h2>
 
         <FormRow label="Email" error={errors?.orgEmail?.message}>
           <TextField
@@ -193,7 +189,7 @@ import {
           </Button>
   
           <div className="flex items-center text-red-500 font-bold">
-            Total Sum Price: {sumPrice}
+            Total: {sumPrice}
           </div>
           <Button type="submit" variant="contained" className="w-1/6">
             Submit
